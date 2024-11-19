@@ -1,7 +1,7 @@
-## Evaluation Metrics
+# Evaluation Metrics
 We evaluate the generated captions using the following metrics:
 
-### BLEU-2 and BLEU-3
+## BLEU-2 and BLEU-3
 ##### Definition: 
 BLEU (Bilingual Evaluation Understudy) is a metric for evaluating the quality of text by measuring the overlap between the generated text and one or more reference texts. BLEU-2 and BLEU-3 consider up to 2-grams and 3-grams, respectively.
 ##### Calculation: 
@@ -9,7 +9,7 @@ The BLEU score is calculated based on the precision of n-grams between the gener
 ##### Reference: 
 Papineni et al., "BLEU: a Method for Automatic Evaluation of Machine Translation," ACL 2002.
 
-### METEOR
+## METEOR
 ##### Definition: 
 METEOR (Metric for Evaluation of Translation with Explicit ORdering) evaluates machine translation output by aligning words and calculating precision and recall, with a higher weight on recall.
 ##### Calculation: 
@@ -17,7 +17,7 @@ METEOR computes a score based on unigram matches between the generated and refer
 ##### Reference: 
 Banerjee and Lavie, "METEOR: An Automatic Metric for MT Evaluation with Improved Correlation with Human Judgments," ACL Workshop 2005.
 
-### ROUGE
+## ROUGE
 ##### Definition: 
 ROUGE (Recall-Oriented Understudy for Gisting Evaluation) measures the quality of a summary by comparing it to reference summaries.
 ##### Calculation: 
