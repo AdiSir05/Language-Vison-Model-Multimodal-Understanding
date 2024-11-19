@@ -22,9 +22,12 @@ example: "
 
 ## Example Usage 
 generated_captions would be a list of generated captions (str):
+```
 [ "a young boy standing on a beach with a surfboard", "a woman in a dress standing on a street", ..... ]
+```
 
 reference_captions would be a list of list of reference captions (str, totally 5 reference caption per generated caption)
+```
 [ ['A boy in his blue swim shorts at the beach .',
 'A boy smiles for the camera at a beach .',
 'A young boy in swimming trunks is walking with his arms outstretched on the beach .',
@@ -38,14 +41,17 @@ reference_captions would be a list of list of reference captions (str, totally 5
 'The woman in the blue dress is holding out her arm at oncoming traffic .'] ,
 
 ...]
+```
 
 After passing these two arguments into compute_evaluation_metrics(generated_captions, reference_captions), you would get a dictionary of performance metrics, like
+```
 {       "meteor": 0.33,
         "bleu2": 0.5,
         "bleu3": 0.3,
         "rouge1": 0.4,
         "rouge2": 0.3,
         "rougeL": 0.3      }
+```
 
 
 
