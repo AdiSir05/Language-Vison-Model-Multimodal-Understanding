@@ -15,3 +15,38 @@ Reference: Banerjee and Lavie, "METEOR: An Automatic Metric for MT Evaluation wi
 Definition: ROUGE (Recall-Oriented Understudy for Gisting Evaluation) measures the quality of a summary by comparing it to reference summaries.
 Calculation: ROUGE-N measures n-gram recall between the generated and reference captions. ROUGE-L measures the longest common subsequence.
 Reference: Lin, "ROUGE: A Package for Automatic Evaluation of Summaries," ACL Workshop 2004.
+
+## Using the Scripts
+Follow the function definition, and use them as helper functions that would be imported to your code
+example: "
+
+## Example Usage 
+generated_captions would be a list of generated captions (str):
+[ "a young boy standing on a beach with a surfboard", "a woman in a dress standing on a street", ..... ]
+
+reference_captions would be a list of list of reference captions (str, totally 5 reference caption per generated caption)
+[ ['A boy in his blue swim shorts at the beach .',
+'A boy smiles for the camera at a beach .',
+'A young boy in swimming trunks is walking with his arms outstretched on the beach .',
+'Children playing on the beach .',
+'The boy is playing on the shore of an ocean .'] ,
+
+['A blond woman in a blue shirt appears to wait for a ride .', 
+'A blond woman is on the street hailing a taxi .',
+'A woman is signaling is to traffic , as seen from behind .',
+'A woman with blonde hair wearing a blue tube top is waving on the side of the street .', 
+'The woman in the blue dress is holding out her arm at oncoming traffic .'] ,
+
+...]
+
+After passing these two arguments into compute_evaluation_metrics(generated_captions, reference_captions), you would get a dictionary of performance metrics, like
+{       "meteor": 0.33,
+        "bleu2": 0.5,
+        "bleu3": 0.3,
+        "rouge1": 0.4,
+        "rouge2": 0.3,
+        "rougeL": 0.3      }
+
+
+
+
