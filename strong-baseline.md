@@ -1,7 +1,7 @@
 
 # Image Captioning Baseline
 
-This repository contains a Jupyter Notebook implementing an image-captioning and watarmark captioning baseline using deep learning. It employs metrics such as METEOR, BLEU, and ROUGE to evaluate model performance.
+This repository contains a Jupyter Notebook implementing an image-captioning and watermark captioning baseline using deep learning. It employs metrics such as METEOR, BLEU, and ROUGE to evaluate model performance.
 
 ---
 
