@@ -1,7 +1,7 @@
 
-# Strong Baseline
+# Simple Baseline
 
-This repository contains a Jupyter Notebook implementing an image-captioning and watermark captioning baseline using deep learning. It employs metrics such as F1, METEOR, BLEU, and ROUGE to evaluate model performance.
+This repository contains a Jupyter Notebook implementing a **naive** image-captioning and watermark captioning baseline using deep learning. It employs metrics such as F1, METEOR, BLEU, and ROUGE to evaluate model performance.
 
 ---
 
@@ -34,7 +34,7 @@ Make sure that the `models` directory is in the same directory as your Jupyter n
 ### 5. Run the Notebook
 Launch the Jupyter Notebook:
 ```bash
-jupyter notebook strong_baseline.ipynb
+jupyter notebook simple_baseline.ipynb
 ```
 
 ---
@@ -46,8 +46,7 @@ jupyter notebook strong_baseline.ipynb
     - Loads images and captions.
     - Produces watermarked images for the dataset
 2. **Model**
-    - For each image, the model uses the Stegastamp watermarking decoder to decode a signature from the image. If the signature is within 5 bits of the original encoding signature, we classify the image as watermarked. Otherwise, it is not watermarked.
-    - The caption of the image is the signature if the image is predicted to be watermarked. Otherwise, the caption is generated using a ViT.
+    - For each image, finds the closest image (using L2 distance) and outputs in caption/classification
 3. **Model Evaluation**:
     - Computes metrics (METEOR, BLEU, ROUGE) using the `evaluate` library to evaluate the produced captioning for images. Watermarked images are captioned with their signature.
     - Compute metrics F1, Precision, Recall to evaluate classification of watermarked images.
