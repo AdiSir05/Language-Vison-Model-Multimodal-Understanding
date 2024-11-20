@@ -14,12 +14,15 @@ pip install torch torchvision transformers bert-score evaluate tqdm matplotlib n
 ```
 
 ### 2. Prepare the Dataset
+
+You can download the zip of the dataset at: https://drive.google.com/file/d/1pXP8HH4EW9l3JThleNr05d8jz96jEoIJ/view?usp=sharing
+
 Unzip the COCO dataset.
 ```bash
 unzip data.zip
 ```
 
-Make sure that the `data` directory is in the same directory as your Jupyter notebook.
+Make sure that the `data` directory is in the same directory as `simple_baseline.py`.
 
 
 ### 4. Include Watermarking Model
@@ -29,12 +32,13 @@ Unzip the pretrained watermarking model folder.
 unzip models.zip
 ```
 
-Make sure that the `models` directory is in the same directory as your Jupyter notebook.
+Make sure that the `models` directory is in the same directory as your `simple_baseline.py`
+Make sure that the files: `stegastamp_wm.py`, `wm_stegastamp_decoder.pth`, and `wm_stegastamp_encoder.pth` is in the `models` directory.
 
-### 5. Run the Notebook
-Launch the Jupyter Notebook:
+### 5. Run the script
+Run the python file:
 ```bash
-jupyter notebook simple_baseline.ipynb
+python simple_baseline.py
 ```
 
 ---
