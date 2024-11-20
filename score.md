@@ -43,7 +43,7 @@ The harmonic mean of Precision and Recall.
 ##### Calculation: 
 F1 = 2 * (Precision * Recall) / (Precision + Recall)
 
-## Using the Scripts
+# Using the Scripts
 Follow the function definition, and use them as helper functions that would be imported to your code
 example: "
 
