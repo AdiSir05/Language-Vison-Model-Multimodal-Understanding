@@ -3,6 +3,11 @@ import torch.nn as nn
 import torch.nn.functional as F
 from collections import OrderedDict
 
+"""
+Vision Transformer model. This model is based of the Vision Transformer architecture from CLIP.
+It is altered to be able to capture the fine detail of embedded watermarks.
+"""
+
 class QuickGELU(nn.Module):
     def forward(self, x: torch.Tensor):
         return x * torch.sigmoid(1.702 * x)
