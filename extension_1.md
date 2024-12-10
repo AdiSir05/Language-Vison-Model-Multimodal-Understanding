@@ -51,8 +51,16 @@ python extension_1.py
     - Loads images and captions.
     - Produces watermarked images for the dataset
 2. **Model**
-    - We load the model defined in VisionTransformer.py and train it to classify watermarked vs not watermarked images.
-3. **Model Evaluation**:
+   - Vision Transformer Classifier
+      - Defined in VisionTransformer.py, this model implements a Vision Transformer architecture tailored for image classification.
+   - Watermark Encoder
+      - StegaStampEncoder encodes a binary signature into an image to create a watermarked version.
+      - The encoder is loaded with pretrained weights from the models directory.
+3. **Training Process**:
+   - Utilizes the AdamW optimizer with a learning rate of 1e-4.
+   - Employs Cross Entropy Loss for classification.
+   - Trains the model over 10 epochs, tracking and visualizing the loss after each epoch.
+4. **Model Evaluation**:
     - Compute metrics F1, Precision, Recall to evaluate classification of watermarked images.
-4. **Hardware Optimization**:
+5. **Hardware Optimization**:
     - Utilizes GPU (CUDA or MPS) if available for faster computations.
