@@ -34,7 +34,7 @@ unzip models.zip
 ```
 
 Make sure that the `models` directory is in the same directory as your `extension_1.py`
-Make sure that the files: `stegastamp_wm.py`, `VisionTransformer.py` and `wm_stegastamp_encoder.pth` are in the `models` directory.
+Make sure that the files: `stegastamp_wm.py`, `VisionTransformer.py`, `wm_stegastamp_decoder.pth` and `wm_stegastamp_encoder.pth` are in the `models` directory.
 
 ### 5. Run the script
 Launch the python file:
