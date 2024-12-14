@@ -1,4 +1,7 @@
-data/
+data/images/
+data/annotations/
+data/mixed_vit_wm_images/
 .idea
 data.zip
+models.zip
 models/*.pth
