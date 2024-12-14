@@ -1,7 +1,7 @@
 
 # Strong Baseline
 
-This repository contains a Jupyter Notebook implementing an image-captioning and watermark captioning baseline using deep learning. It employs metrics such as F1, METEOR, BLEU, and ROUGE to evaluate model performance.
+This repository contains a Jupyter Notebook implementing watermark classification and decoding using ConvNets.
 
 ---
 
@@ -10,7 +10,7 @@ This repository contains a Jupyter Notebook implementing an image-captioning and
 ### 1. Install Dependencies
 Install the required Python packages:
 ```bash
-pip install torch torchvision transformers bert-score evaluate tqdm matplotlib numpy
+pip install torch torchvision matplotlib numpy
 ```
 
 ### 2. Prepare the Dataset
@@ -49,13 +49,15 @@ python strong_baseline.py
 
 ### Key Components
 1. **Data Loading**:
-    - Loads images and captions.
-    - Produces watermarked images for the dataset
+    - Loads images
+    - Loads watermarked images
 2. **Model**
-    - For each image, the model uses the Stegastamp watermarking decoder to decode a signature from the image. If the signature is within 5 bits of the original encoding signature, we classify the image as watermarked. Otherwise, it is not watermarked.
-    - The caption of the image is the signature if the image is predicted to be watermarked. Otherwise, the caption is generated using a ViT.
+    - The watermarked images are generated using a Stegastamp (ConvNet) encoder.
+    - A ConvNet based classifier is trained to discriminate between watermarked and not watermarked images.
+    - For each image, the classifier predicts if it is watermarked or not.
+    - For each watermarked image, the model uses the Stegastamp (ConvNet) decoder to decode a signature from the image.
 3. **Model Evaluation**:
-    - Computes metrics (METEOR, BLEU, ROUGE) using the `evaluate` library to evaluate the produced captioning for images. Watermarked images are captioned with their signature.
     - Compute metrics F1, Precision, Recall to evaluate classification of watermarked images.
+    - Compute bit accuracy for watermark prediction
 4. **Hardware Optimization**:
     - Utilizes GPU (CUDA or MPS) if available for faster computations.

@@ -1,5 +1,6 @@
 import torch
 import torch.nn as nn
+import math
 import torch.nn.functional as F
 from collections import OrderedDict
 
@@ -8,9 +9,12 @@ Vision Transformer model. This model is based of the Vision Transformer architec
 It is altered to be able to capture the fine detail of embedded watermarks.
 """
 
+
 class QuickGELU(nn.Module):
     def forward(self, x: torch.Tensor):
         return x * torch.sigmoid(1.702 * x)
+
+
 
 class ResidualAttentionBlock(nn.Module):
     def __init__(self, d_model: int, n_head: int, attn_mask: torch.Tensor = None):
@@ -26,7 +30,8 @@ class ResidualAttentionBlock(nn.Module):
         self.attn_mask = attn_mask
 
     def attention(self, x: torch.Tensor):
-        self.attn_mask = self.attn_mask.to(dtype=x.dtype, device=x.device) if self.attn_mask is not None else None
+        self.attn_mask = self.attn_mask.to(dtype=x.dtype,
+                                           device=x.device) if self.attn_mask is not None else None
         return self.attn(x, x, x, need_weights=False, attn_mask=self.attn_mask)[0]
 
     def forward(self, x: torch.Tensor):
@@ -40,10 +45,12 @@ class Transformer(nn.Module):
         super().__init__()
         self.width = width
         self.layers = layers
-        self.resblocks = nn.Sequential(*[ResidualAttentionBlock(width, heads, attn_mask) for _ in range(layers)])
+        self.resblocks = nn.Sequential(
+            *[ResidualAttentionBlock(width, heads, attn_mask) for _ in range(layers)])
 
     def forward(self, x: torch.Tensor):
         return self.resblocks(x)
+
 
 class VisionTransformerClassifier(nn.Module):
     def __init__(self, input_resolution: int, layers: int, heads: int, output_dim: int):
@@ -53,10 +60,11 @@ class VisionTransformerClassifier(nn.Module):
         self.patch_size = 3
         self.width = 64
         self.sample_ratio = 2
-        self.conv1 = nn.Conv2d(in_channels=3, out_channels=32, padding=1, stride=2, kernel_size=self.patch_size)
-        self.conv2 = nn.Conv2d(in_channels=32, out_channels=64, padding=1, stride=4, kernel_size=self.patch_size)
-        self.downsample = nn.PixelUnshuffle(self.sample_ratio)
-        
+        self.conv1 = nn.Conv2d(in_channels=3, out_channels=32, padding=1, stride=2,
+                               kernel_size=self.patch_size)
+        self.conv2 = nn.Conv2d(in_channels=32, out_channels=64, padding=1, stride=4,
+                               kernel_size=self.patch_size)
+
         scale = self.width ** -0.5
         self.ln_pre = nn.LayerNorm(self.width)
 
@@ -64,7 +72,6 @@ class VisionTransformerClassifier(nn.Module):
 
         self.ln_post = nn.LayerNorm(self.width)
         self.proj = nn.Parameter(scale * torch.randn(64, output_dim))
-        
 
     def forward(self, x: torch.Tensor):
         x = F.relu(self.conv1(x))
@@ -78,6 +85,4 @@ class VisionTransformerClassifier(nn.Module):
         x = self.ln_post(x[:, 0, :])
         if self.proj is not None:
             x = x @ self.proj
-            
-        
         return x

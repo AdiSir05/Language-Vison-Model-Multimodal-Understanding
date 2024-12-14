@@ -1,8 +1,7 @@
 
 # Simple Baseline
 
-This repository contains a Jupyter Notebook implementing a **naive** image-captioning and watermark captioning baseline using deep learning. It employs metrics such as F1, METEOR, BLEU, and ROUGE to evaluate model performance.
-
+This repository contains a Jupyter Notebook implementing a **naive** watermark classification and decoding baseline.
 ---
 
 ## Setup Instructions
@@ -10,7 +9,7 @@ This repository contains a Jupyter Notebook implementing a **naive** image-capti
 ### 1. Install Dependencies
 Install the required Python packages:
 ```bash
-pip install torch torchvision transformers bert-score evaluate tqdm matplotlib numpy
+pip install torch torchvision transformers numpy
 ```
 
 ### 2. Prepare the Dataset
@@ -47,12 +46,13 @@ python simple_baseline.py
 
 ### Key Components
 1. **Data Loading**:
-    - Loads images and captions.
-    - Produces watermarked images for the dataset
+    - Loads images
+    - Loads watermarked images for the dataset
 2. **Model**
-    - For each image, finds the closest image (using L2 distance) and outputs in caption/classification
+    - For each image, randomly classifies as watermarked or not watermarked.
+    - For each watermarked image, randomly predicts its watermark
 3. **Model Evaluation**:
-    - Computes metrics (METEOR, BLEU, ROUGE) using the `evaluate` library to evaluate the produced captioning for images. Watermarked images are captioned with their signature.
     - Compute metrics F1, Precision, Recall to evaluate classification of watermarked images.
+    - Compute bit accuracy for watermark prediction
 4. **Hardware Optimization**:
     - Utilizes GPU (CUDA or MPS) if available for faster computations.
