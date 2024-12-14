@@ -1,3 +1,6 @@
 data/
 .idea
 data.zip
+models/wformer_decoder.pth
+models/wformer_encoder.pth
+models/vit_discriminator.pth
