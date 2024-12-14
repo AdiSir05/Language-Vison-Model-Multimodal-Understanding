@@ -3,5 +3,5 @@ data/annotations/
 data/mixed_vit_wm_images/
 .idea
 data.zip
+code/models/*.pth
 models.zip
-models/*.pth
